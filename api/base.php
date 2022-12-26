@@ -75,20 +75,30 @@ class DB
         return $this->pdo->exec($sql);
     }
 
-    public function count()
+    public function count(...$arg)
     {
+        return $this->math('count',...$arg); //...為解構賦值
     }
 
-    public function max()
+
+    public function sum($col, ...$arg)
     {
+        return $this->math('sum',$col,...$arg); //...為解構賦值
     }
 
-    public function min()
+    public function max($col,...$arg)
     {
+        return $this->math('max',$col,...$arg); //...為解構賦值
     }
 
-    public function avg()
+    public function min($col,...$arg)
     {
+        return $this->math('min',$col,...$arg); //...為解構賦值
+    }
+
+    public function avg($col,...$arg)
+    {
+        return $this->math('avg',$col,...$arg); //...為解構賦值
     }
 
     private function arrayToSqlArray($array)
@@ -98,9 +108,30 @@ class DB
         }
         return $tmp;
     }
+
+    private function math($math, ...$arg)
+    {
+        switch ($math) {
+            case 'count';
+                $sql = "select count(*) from $this->table";
+                break;
+            default;
+                $sql = "select $math($arg[0]) from $this->table";
+        }
+
+        if (isset($arg[1])) {
+            if (is_array($arg[1])) {
+                $tmp = $this->arrayToSqlArray($arg[1]);
+                $sql = $sql . " where " . join(" && ", $tmp);
+            } else {
+                $sql = $sql . $arg[1];
+            }
+        }
+        return $this->pdo->query($sql)->fetchColumn();
+    }
 }
 
-function dd()
+function dd($array)
 {
     echo "<pre>";
     print_r($array);
@@ -109,18 +140,18 @@ function dd()
 
 function to($url)
 {
-    header("location".url)
+    header("location" . $url);
 }
 
-function q()
+function q($sql)
 {
     $dsn = "mysql:host=localhost;charset=utf8;dbname=db06";
-    $pdo=new PDO($dsn,'root','');
+    $pdo = new PDO($dsn, 'root', '');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
 $db = new DB('bottom');
-// $bot = $db->all();
+$bot = $db->all();
 // print_r($bot);
 // $db->del(4);
 // print_r($db->all());
@@ -129,9 +160,21 @@ $db = new DB('bottom');
 // $sql="inset into `bottom`(`bottom`) value ('2022頁尾版權')";
 // $pdo->exec($sql);
 
-$row=$db->find(1);
-print_r($row);
+// $row = $db->find(1);
+// print_r($row);
 
-$row['bottom']="2023科技大學版權所有";
-print_r($row);
-$db->save($row);
+// $row['bottom'] = "2023科技大學版權所有";
+// print_r($row);
+// $db->save($row);
+
+echo "資料總數為:".$db->count();
+echo "<br>";
+echo "資料加總為:".$db->sum('price');
+echo "<br>";
+echo "價格最大為:".$db->max('price');
+echo "<br>";
+echo "id最小為:".$db->min('id');
+echo "<br>";
+echo "平均價格為:".$db->avg('price');
+echo "<br>";
+echo "<br>";
