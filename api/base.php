@@ -140,7 +140,7 @@ function dd($array)
 
 function to($url)
 {
-    header("location" . $url);
+    header("location:" . $url);
 }
 
 function q($sql)
@@ -151,6 +151,7 @@ function q($sql)
 }
 
 $bottom = new DB('bottom');
+$Title = new DB('Title');
 // print_r($bot);
 // $db->del(4);
 // print_r($db->all());
