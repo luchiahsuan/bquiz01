@@ -102,14 +102,21 @@ class DB
 
 function dd()
 {
+    echo "<pre>";
+    print_r($array);
+    echo "</pre>";
 }
 
-function to()
+function to($url)
 {
+    header("location".url)
 }
 
 function q()
 {
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=db06";
+    $pdo=new PDO($dsn,'root','');
+    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
 $db = new DB('bottom');
