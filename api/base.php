@@ -1,6 +1,6 @@
 <?php
 session_start();
-date_default_timezone_get("asia/taipei");
+date_default_timezone_set("Asia/Taipei");
 
 class DB
 {
@@ -14,57 +14,83 @@ class DB
         $this->pdo = new PDO($this->dsn, 'root', '');
     }
 
-    public function find()
+    public function find($id)
     {
+        $sql = "select * from $this->table";
 
+        if (is_array($id)) {
+            $tmp = $this->arrayToSqlArray($id);
+            $sql = $sql . " where " . join(" && ", $tmp);
+        } else {
+            $sql = $sql . " where `id`='$id'";
+        }
+
+        return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function all()
+    public function all(...$arg)
     {
+        $sql = "select * from $this->table";
+        if (isset($arg[0])) {
+            if (is_array($arg[0])) {
+                $tmp = $this->arrayToSqlArray($arg[0]);
+                $sql = $sql . " Where " . join(" && ", $tmp);
+            } else {
+                $sql = $sql . $arg[0];
+            }
+        }
 
+        if (isset($arg[1])) {
+            $sql = $sql . $arg[1];
+        }
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function save()
     {
-
     }
 
     public function delete()
     {
-
     }
 
     public function count()
     {
-
     }
 
     public function max()
     {
-
     }
 
     public function min()
     {
-
     }
 
     public function avg()
     {
-
     }
 
-
+    private function arrayToSqlArray($array)
+    {
+        foreach ($array as $key => $value) {
+            $tmp[] = "`$key`='$value'";
+        }
+        return $tmp;
+    }
 }
 
-function dd(){
-
+function dd()
+{
 }
 
-function to(){
-
+function to()
+{
 }
 
-function q(){
-    
+function q()
+{
 }
+
+$db = new DB('bottom');
+$bot = $db->find(1);
+print_r($bot);
