@@ -1,3 +1,7 @@
+<?php
+include "./api/base.php";
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0040)http://127.0.0.1/test/exercise/collage/? -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -36,14 +40,14 @@
 				</div>
 			</div>
 			<?php
-			$do-$_GET['do']??'home';
-			$file="./front".$do.".php";
+			$do=$_GET['do']??'home';
+			$file="./front/".$do.".php";
 			if(file_exists($file)){
 				include $file;
-			}else(
+			}else{
 
-				include ("front/home.php")
-			)
+				include "./front/home.php";
+			}
 			?>
 
 			<div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div>
@@ -92,7 +96,7 @@
 		</div>
 		<div style="clear:both;"></div>
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-			<span class="t" style="line-height:123px;"></span>
+			<span class="t" style="line-height:123px;"><?= $bottom->find(1)['bottom'];?></span>
 		</div>
 	</div>
 

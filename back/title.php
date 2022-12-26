@@ -10,6 +10,13 @@
                     <td width="7%">刪除</td>
                     <td></td>
                 </tr>
+                <tr>
+                    <td width="45%"><img src="" style="width:300px;height:30px"></td>
+                    <td width="23%"><input type="text" name="text" id=""></td>
+                    <td width="7%"><input type="radio" name="sh" id=""></td>
+                    <td width="7%"><input type="checkbox" name="del" id=""></td>
+                    <td><input type="button" value="更新圖片"></td>
+                </tr>
             </tbody>
         </table>
         <table style="margin-top:40px; width:70%;">

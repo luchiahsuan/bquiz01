@@ -150,8 +150,7 @@ function q($sql)
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
-$db = new DB('bottom');
-$bot = $db->all();
+$bottom = new DB('bottom');
 // print_r($bot);
 // $db->del(4);
 // print_r($db->all());
@@ -167,14 +166,14 @@ $bot = $db->all();
 // print_r($row);
 // $db->save($row);
 
-echo "資料總數為:".$db->count();
-echo "<br>";
-echo "資料加總為:".$db->sum('price');
-echo "<br>";
-echo "價格最大為:".$db->max('price');
-echo "<br>";
-echo "id最小為:".$db->min('id');
-echo "<br>";
-echo "平均價格為:".$db->avg('price');
-echo "<br>";
-echo "<br>";
+// echo "資料總數為:".$db->count();
+// echo "<br>";
+// echo "資料加總為:".$db->sum('price');
+// echo "<br>";
+// echo "價格最大為:".$db->max('price');
+// echo "<br>";
+// echo "id最小為:".$db->min('id');
+// echo "<br>";
+// echo "平均價格為:".$db->avg('price');
+// echo "<br>";
+// echo "<br>";
