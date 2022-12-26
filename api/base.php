@@ -46,12 +46,33 @@ class DB
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function save()
+    public function save($array)
     {
+        if (isset($array['id'])) {
+            $id = $array['id'];
+            unset($array['id']);
+            $tmp = $this->arrayToSqlArray($array);
+            $sql = "update $this->table set" . join(",", $tmp) . " where `id`='$id'";
+        } else {
+            $cols = array_keys($array);
+            $sql = "insert into $this->table (`" . join("`,`", $cols) . "`) values('" . join("','", $array) . "')";
+        }
+        echo $sql;
+        $this->pdo->exec($sql);
     }
 
-    public function delete()
+    public function del($id)
     {
+        $sql = "delete from $this->table";
+
+        if (is_array($id)) {
+            $tmp = $this->arrayToSqlArray($id);
+            $sql = $sql . " where " . join(" && ", $tmp);
+        } else {
+            $sql = $sql . " where `id`='$id'";
+        }
+
+        return $this->pdo->exec($sql);
     }
 
     public function count()
@@ -92,5 +113,18 @@ function q()
 }
 
 $db = new DB('bottom');
-$bot = $db->find(1);
-print_r($bot);
+// $bot = $db->all();
+// print_r($bot);
+// $db->del(4);
+// print_r($db->all());
+// $db->save(['bottom' => '2022頁尾版權']);
+// 118-119等同於116
+// $sql="inset into `bottom`(`bottom`) value ('2022頁尾版權')";
+// $pdo->exec($sql);
+
+$row=$db->find(1);
+print_r($row);
+
+$row['bottom']="2023科技大學版權所有";
+print_r($row);
+$db->save($row);
