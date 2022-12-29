@@ -34,7 +34,7 @@
                 <tr>
                     <td width="200px">
                         <input type="button" 
-                            onclick="op('#cover','#cvr','./modal/title.php')" 
+                            onclick="op('#cover','#cvr','./modal/upload_title.php')" 
                               value="新增網站標題圖片">
                     </td>
                     <td class="cent">
