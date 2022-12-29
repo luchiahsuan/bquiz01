@@ -1,9 +1,9 @@
 <?php
 include "base.php";
 
-if(!empty($_FILE['img']['tmp_name'])){
-    move_uploaded_file($_FILE['img']['tmp_name'],"../uplaod/".$_FILE['img']['tmp_name']);
-    $img=$_FLIE['img']['name'];
+if(!empty($_FILES['img']['tmp_name'])){
+    move_uploaded_file($_FILES['img']['tmp_name'],"../uplaod/".$_FILES['img']['name']);
+    $img=$_FLISE['img']['name'];
 }
 
 $text=$_POST['text'];
