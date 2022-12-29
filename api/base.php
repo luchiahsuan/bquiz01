@@ -154,6 +154,7 @@ $bottom = new DB('bottom');
 $Title = new DB('title');
 $Ad = new DB('ad');
 $Mvim = new DB('mvim');
+$Image = new DB('image');
 // print_r($bot);
 // $db->del(4);
 // print_r($db->all());

@@ -33,6 +33,7 @@
                         <input type="button" onclick="op('#cover','#cvr','./modal/ad.php')" value="新增動態文字廣告">
                     </td>
                     <td class="cent">
+                    <input type="hidden" name="table" value="Ad">
                         <input type="submit" value="修改確定"><input type="reset" value="重置">
                     </td>
                 </tr>
