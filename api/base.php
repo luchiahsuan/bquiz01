@@ -156,6 +156,8 @@ $Ad = new DB('ad');
 $Mvim = new DB('mvim');
 $Image = new DB('image');
 $News = new DB('news');
+$Admin = new DB('admin');
+
 // print_r($bot);
 // $db->del(4);
 // print_r($db->all());
