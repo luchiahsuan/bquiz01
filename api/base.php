@@ -151,7 +151,8 @@ function q($sql)
 }
 
 $bottom = new DB('bottom');
-$Title = new DB('Title');
+$Title = new DB('title');
+$Ad = new DB('ad');
 // print_r($bot);
 // $db->del(4);
 // print_r($db->all());
