@@ -12,7 +12,7 @@
                     <td></td>
                 </tr>
                 <?php
-                $rows = $Menu->all();
+                $rows = $Menu->all(["parent"=>0]);
                 foreach ($rows as $row) {
                     $checked = ($row['sh'] == 1) ? "checked" : "";
                 ?>
@@ -22,7 +22,7 @@
                         <td></td>
                         <td><input type="checkbox" name="sh[]" value="<?= $row['id'] ?>" <?=$checked;?> ></td>
                         <td><input type="checkbox" name="del[]" value="<?= $row['id'] ?>"></td>
-                        <td><input type="button" onclick="op('#cover','#cvr','./modal/submenu.php')" value="編輯次選單"></td>
+                        <td><input type="button" onclick="op('#cover','#cvr','./modal/submenu.php?id=<?=$row['id'];?>')" value="編輯次選單"></td>
                         <td> <input type="hidden" name="id[]" value="<?= $row['id'] ?>"> </td>
                     </tr>
                 <?php
