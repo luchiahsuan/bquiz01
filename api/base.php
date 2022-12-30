@@ -160,6 +160,13 @@ $Admin = new DB('admin');
 $Menu = new DB('menu');
 $Total = new DB('total');
 
+if(!isset($_SESSION['visit'])){
+$_SESSION['visit']=1;
+$total=$Total->find(1);
+$total['total']++;
+$Total->save($total);
+}
+
 // print_r($bot);
 // $db->del(4);
 // print_r($db->all());
