@@ -20,6 +20,10 @@ foreach ($_POST['id'] as $idx => $id) {
                 $row['pw'] = $_POST['pw'][$idx];
                 break;
             case "Menu":
+                $data['name']=$_POST['name'][$idx];
+                $data['href']=$_POST['href'][$idx];
+                $data['sh']=1;
+                $data['parent']=0;
                 break;
             default:
                 if (isset($_POST['text'])) {
