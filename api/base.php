@@ -158,6 +158,7 @@ $Image = new DB('image');
 $News = new DB('news');
 $Admin = new DB('admin');
 $Menu = new DB('menu');
+$Total = new DB('total');
 
 // print_r($bot);
 // $db->del(4);

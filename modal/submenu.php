@@ -25,7 +25,7 @@ include_once "../api/base.php";
                     <input type="text" name="href[]" value="<?= $row['href']; ?>">
                 </td>
                 <td>
-                    <input type="text" name="del[]" value="<?= $row['id']; ?>">
+                    <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                 </td>
                 <td></td>
                 <input type="hidden" name="id[]" value="<?= $row['id']; ?>">

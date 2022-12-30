@@ -19,7 +19,7 @@
                     <tr>
                         <td><input type="text" name="name[]" value="<?= $row['name'] ?>" style="width:95%"></td>
                         <td><input type="text" name="href[]" value="<?= $row['href'] ?>" style="width:95%"></td>
-                        <td></td>
+                        <td><?=$Menu->count(['parent'=>$row['id']]);?></td>
                         <td><input type="checkbox" name="sh[]" value="<?= $row['id'] ?>" <?=$checked;?> ></td>
                         <td><input type="checkbox" name="del[]" value="<?= $row['id'] ?>"></td>
                         <td><input type="button" onclick="op('#cover','#cvr','./modal/submenu.php?id=<?=$row['id'];?>')" value="編輯次選單"></td>
