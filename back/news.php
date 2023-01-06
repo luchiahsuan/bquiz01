@@ -10,12 +10,18 @@
                 </tr>
                 <?php
                 $rows = $News->all();
+                $all = $News->count();
+                $div = 4;
+                $pages = ceil($all / $div);
+                $now = $_GET['p'] ?? 1;
+                $start = ($now - 1) * $div;
+                $rows = $News->all(" limit $start,$div");
                 foreach ($rows as $row) {
                     $checked = ($row['sh'] == 1) ? "checked" : "";
 
                 ?>
                     <tr>
-                        <td> <textarea name="text[]" style="width:95%;height:62px"><?= $row['text']; ?></textarea>                       </td>
+                        <td> <textarea name="text[]" style="width:95%;height:62px"><?= $row['text']; ?></textarea> </td>
                         <td><input type="checkbox" name="sh[]" value="<?= $row['id'] ?>" <?= $checked; ?>></td>
                         <td><input type="checkbox" name="del[]" value="<?= $row['id'] ?>"></td>
                         <td>
@@ -28,6 +34,32 @@
                 ?>
             </tbody>
         </table>
+        <div style="text-align:center;">
+            <?php
+            if (($now - 1) > 0) {
+            ?>
+                <a class="bl" style="font-size:30px;" href="?do=news&p=<?= $now - 1; ?>">&lt;&nbsp;</a>
+            <?php
+            }
+            ?>
+
+            <?php
+            for ($i = 1; $i <= $pages; $i++) {
+                $size = ($i == $now) ? "24px" : "18px";
+            ?>
+                <a class="bl" style="font-size:<?= $size; ?>" href="?do=news&p=<?= $i; ?>">&nbsp;<?= $i; ?>&nbsp;</a>
+            <?php
+            }
+            ?>
+
+            <?php
+            if (($now + 1) <= $pages) {
+            ?>
+                <a class="bl" style="font-size:30px;" href="?do=news&p=<?= $now + 1; ?>">&nbsp;&gt;</a>
+            <?php
+            }
+            ?>
+        </div>
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>
