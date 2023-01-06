@@ -5,6 +5,7 @@
 		foreach ($ads as $ad) {
 			echo $ad['text'];
 			echo "&nbsp;&nbsp;&nbsp;";
+			}
 		?>
 	</marquee>
 	<div style="height:32px; display:block;"></div>
@@ -17,9 +18,9 @@
 			$start = ($now - 1) * $div;
 			$rows = $News->all(['sh' => 1], " limit $start,$div");
 			echo "<ol start='" . ($start + 1) . "'>";
-			foreach ($rows as $idx => $row);
+			foreach ($rows as $idx => $row){
 				echo "<li class='sswww'>";
-				// echo $start + $idx + 1 . ". ";
+				/*echo $start + $idx + 1 . ". ";*/
 				echo mb_substr($row['text'], 0, 25);
 				echo "<span class='all' style='display:none;'>";
 				echo $row['text'];
