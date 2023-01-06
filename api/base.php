@@ -150,7 +150,7 @@ function q($sql)
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
-$bottom = new DB('bottom');
+$Bottom = new DB('bottom');
 $Title = new DB('title');
 $Ad = new DB('ad');
 $Mvim = new DB('mvim');
