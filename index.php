@@ -125,7 +125,7 @@ include "./api/base.php";
 							if (x == 1 && nowpage - 1 >= 0) {
 								nowpage--;
 							}
-							if (x == 2 && (nowpage + 1) * 3 <= num * 1 - 3) {
+							if (x == 2 && (nowpage + 1) <= num * 1 - 3) {
 								nowpage++;
 							}
 							$(".im").hide()
