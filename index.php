@@ -36,20 +36,25 @@ include "./api/base.php";
 					<?php
 					$mains = $Menu->all(['sh' => 1, 'parent' => 0]);
 					foreach ($mains as $main) {
-						echo "<a href='{$main['href']}'>";
-						echo "<div class='mainmu'>{$main['name']}</div>";
-						echo "</a>";
+						echo "<div class='mainmu'>";
+						echo 	"<a href='{$main['href']}'>";
+						echo 		$main['name'];
+						echo 	"</a>";
 
+
+						echo 	"<div class='mw' style='display:none'>";
 						if ($Menu->count(['parent' => $main['id']]) > 0) {
 							$subs = $Menu->all(['parent' => $main['id']]);
 							foreach ($subs as $sub) {
-								echo "<a href='{$sub['href']}'>";
 								echo "<div class='mainmu2'>";
-								echo $sub['name'];
+								echo 	"<a href='{$sub['href']}'>";
+								echo 		$sub['name'];
+								echo 	"</a>";
 								echo "</div>";
-								echo "</a>";
 							}
 						}
+						echo 	"</div>";
+						echo "</div>";
 					}
 					?>
 				</div>
